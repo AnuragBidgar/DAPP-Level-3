@@ -44,6 +44,13 @@ To run the automated tests:
 npx vitest run
 ```
 
+## Screenshots
+*(Save your images into the `screenshots` folder to display them here)*
+- **Landing Page:** ![Landing Page](./screenshots/landing.png)
+- **Dashboard:** ![Dashboard](./screenshots/dashboard.png)
+- **Share Prompt:** ![Share Prompt](./screenshots/share.png)
+- **Confirm Transaction:** ![Confirm Transaction](./screenshots/transaction.png)
+
 ## Usage
 1. Click **Connect Wallet to Start** on the landing page.
 2. Approve the connection request in your Freighter wallet extension.
