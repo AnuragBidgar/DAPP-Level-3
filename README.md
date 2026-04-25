@@ -46,10 +46,14 @@ npx vitest run
 
 ## Screenshots
 *(Save your images into the `screenshots` folder to display them here)*
-- **Landing Page:** ![Landing Page](./screenshots/landing.png)
-- **Dashboard:** ![Dashboard](./screenshots/dashboard.png)
-- **Share Prompt:** ![Share Prompt](./screenshots/share.png)
-- **Confirm Transaction:** ![Confirm Transaction](./screenshots/transaction.png)
+- **Landing Page:** <img width="1873" height="902" alt="Screenshot 2026-04-25 213526" src="https://github.com/user-attachments/assets/0d73a692-dd3e-4646-b573-0ba4358ff9fd" />
+
+- **Dashboard:** <img width="1863" height="900" alt="Screenshot 2026-04-25 213550" src="https://github.com/user-attachments/assets/a56cff31-7dcb-40c9-99a4-2bc5cbc7204d" />
+
+- **Share Prompt:** <img width="566" height="463" alt="Screenshot 2026-04-25 213637" src="https://github.com/user-attachments/assets/7cbcc3af-1d6d-46af-b6e8-0a433646b830" />
+
+- **Confirm Transaction:** <img width="1858" height="897" alt="Screenshot 2026-04-25 213757" src="https://github.com/user-attachments/assets/d1cdb3c7-1465-4f48-af3b-bf62ea99824c" />
+
 
 ## Usage
 1. Click **Connect Wallet to Start** on the landing page.
@@ -59,11 +63,6 @@ npx vitest run
 5. Click **Share Badge** to securely transfer a badge to another person's wallet address.
 
 ## Project Submission Links
-- **Live Demo:** [Deploy Link Here]
-- **Demo Video:** [Video Link Here]
+- **Live Demo:** [http://localhost:5175/]
+- **Demo Video:** []
 
-## Test Coverage
-*Screenshot of 3+ passing tests:*
-![Test Output Placeholder](./screenshots/test-output.png)
-
-*(Please replace the links above with your actual deployed app URL, YouTube/Loom video link, and a screenshot of the `npm run test` output before submitting.)*
