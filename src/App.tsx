@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { BadgeForm } from './components/BadgeForm';
 import { BadgeList } from './components/BadgeList';
-import { connectWallet } from './utils/wallet';
-import { getBadges, saveBadge, getStats } from './utils/api';
+import { connectWallet, signBadgeTransaction, transferBadgeTransaction } from './utils/wallet';
+import { getBadges, saveBadge, getStats, transferBadge } from './utils/api';
 import type { Badge } from './utils/api';
 import { CheckCircle2, Award, Users, ShieldCheck } from 'lucide-react';
 
@@ -39,15 +39,37 @@ function App() {
     if (!walletAddress) return;
     setIsAdding(true);
     
-    const newBadge = await saveBadge(walletAddress, { skillName, issuer, category: category || 'Development' } as any);
-    if (newBadge) {
-      setBadges(prev => [...prev, newBadge]);
-      setSuccessMsg('Badge minted successfully!');
-      setTimeout(() => setSuccessMsg(''), 4000);
-      getStats().then(setStats);
+    // Prompt the user to sign a transaction
+    const signedTx = await signBadgeTransaction(walletAddress);
+    
+    if (signedTx) {
+      const newBadge = await saveBadge(walletAddress, { skillName, issuer, category: category || 'Development' } as any);
+      if (newBadge) {
+        setBadges(prev => [...prev, newBadge]);
+        setSuccessMsg('Badge minted successfully!');
+        setTimeout(() => setSuccessMsg(''), 4000);
+        getStats().then(setStats);
+      }
     }
     
     setIsAdding(false);
+  };
+
+  const handleTransferBadge = async (id: string, destinationAddress: string) => {
+    if (!walletAddress) return;
+    
+    // Prompt the user to sign a transfer transaction
+    const signedTx = await transferBadgeTransaction(walletAddress, destinationAddress);
+    
+    if (signedTx) {
+      const updatedBadge = await transferBadge(id, destinationAddress);
+      if (updatedBadge) {
+        setBadges(prev => prev.filter(b => b.id !== id));
+        setSuccessMsg('Badge transferred successfully!');
+        setTimeout(() => setSuccessMsg(''), 4000);
+        getStats().then(setStats);
+      }
+    }
   };
 
   return (
@@ -132,7 +154,7 @@ function App() {
                   Network Stats: {stats.totalBadges} Global Badges
                 </span>
               </div>
-              <BadgeList badges={badges} />
+              <BadgeList badges={badges} onTransfer={handleTransferBadge} />
             </section>
           </main>
         )}

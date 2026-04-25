@@ -7,6 +7,8 @@ import { vi, describe, it, expect, beforeEach } from 'vitest';
 // Mock the wallet utils
 vi.mock('../utils/wallet', () => ({
   connectWallet: vi.fn(),
+  signBadgeTransaction: vi.fn(),
+  transferBadgeTransaction: vi.fn(),
 }));
 
 describe('Proof of Skill App', () => {
@@ -36,6 +38,7 @@ describe('Proof of Skill App', () => {
 
   it('adds a badge successfully', async () => {
     (WalletUtils.connectWallet as any).mockResolvedValue('GDXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX');
+    (WalletUtils.signBadgeTransaction as any).mockResolvedValue('dummy_signed_tx');
     
     render(<App />);
     

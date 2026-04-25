@@ -7,6 +7,46 @@
       "issuer": "Meta",
       "category": "Development",
       "timestamp": 1777052752849
+    },
+    {
+      "id": "a8096526-0f25-452a-9e1d-552b6686f827",
+      "walletAddress": "GAJ23UGXDYDBEBLI5JAE77LFTSQUTWJ6RIGXYAJJILDWWUHNMXEXK3X3",
+      "skillName": "react",
+      "issuer": "meta certificate",
+      "category": "Development",
+      "timestamp": 1777053286381
+    },
+    {
+      "id": "6d69cc76-53bc-439f-a082-d9ac2821350f",
+      "walletAddress": "GBEK4KIFIA5EP3XTK5DWNV26XRVV22IJYN5WLTSU2M5Q3ISZMLBTT66P",
+      "skillName": "sql",
+      "issuer": "google certificate",
+      "category": "Development",
+      "timestamp": 1777053355003
+    },
+    {
+      "id": "e7addf24-553d-467d-aaf7-405a76f94c3c",
+      "walletAddress": "GDXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "skillName": "React",
+      "issuer": "Meta",
+      "category": "Development",
+      "timestamp": 1777131867722
+    },
+    {
+      "id": "5ed7ceac-9f68-4850-8050-9091bc48c1c0",
+      "walletAddress": "GDXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+      "skillName": "React",
+      "issuer": "Meta",
+      "category": "Development",
+      "timestamp": 1777131902952
+    },
+    {
+      "id": "6446b470-1f70-4cac-8af9-5e9fd00ed785",
+      "walletAddress": "GAJ23UGXDYDBEBLI5JAE77LFTSQUTWJ6RIGXYAJJILDWWUHNMXEXK3X3",
+      "skillName": "Advanced react patterns",
+      "issuer": "SAP certificate",
+      "category": "Product",
+      "timestamp": 1777132013299
     }
   ]
 }

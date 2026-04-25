@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import type { Badge } from '../utils/api';
-import { Award, CheckCircle, Search, Filter } from 'lucide-react';
+import { Award, CheckCircle, Search, Filter, Send } from 'lucide-react';
 
 interface BadgeListProps {
   badges: Badge[];
+  onTransfer: (id: string, destinationAddress: string) => Promise<void>;
 }
 
-export const BadgeList: React.FC<BadgeListProps> = ({ badges }) => {
+export const BadgeList: React.FC<BadgeListProps> = ({ badges, onTransfer }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [transferringId, setTransferringId] = useState<string | null>(null);
+  const [destinationAddress, setDestinationAddress] = useState('');
 
   const categories = Array.from(new Set(badges.map(b => b.category || 'Other')));
 
@@ -16,6 +19,18 @@ export const BadgeList: React.FC<BadgeListProps> = ({ badges }) => {
     .filter(b => b.skillName.toLowerCase().includes(searchTerm.toLowerCase()) || b.issuer.toLowerCase().includes(searchTerm.toLowerCase()))
     .filter(b => selectedCategory ? (b.category || 'Other') === selectedCategory : true)
     .sort((a, b) => b.timestamp - a.timestamp);
+
+  const handleTransferClick = (id: string) => {
+    setTransferringId(id);
+    setDestinationAddress('');
+  };
+
+  const submitTransfer = async (id: string) => {
+    if (!destinationAddress.trim()) return;
+    await onTransfer(id, destinationAddress.trim());
+    setTransferringId(null);
+    setDestinationAddress('');
+  };
 
   if (badges.length === 0) {
     return (
@@ -83,6 +98,44 @@ export const BadgeList: React.FC<BadgeListProps> = ({ badges }) => {
               <div className="badge-footer">
                 <span>Minted on</span>
                 <span>{new Date(badge.timestamp).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+              </div>
+              
+              <div style={{ marginTop: '1rem', borderTop: '1px solid var(--glass-border)', paddingTop: '1rem' }}>
+                {transferringId === badge.id ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    <input 
+                      type="text" 
+                      placeholder="Destination Address" 
+                      value={destinationAddress}
+                      onChange={(e) => setDestinationAddress(e.target.value)}
+                      style={{ padding: '0.5rem', fontSize: '0.85rem' }}
+                    />
+                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                      <button 
+                        onClick={() => submitTransfer(badge.id)} 
+                        className="btn-primary" 
+                        style={{ padding: '0.5rem', fontSize: '0.85rem', flex: 1 }}
+                      >
+                        Confirm
+                      </button>
+                      <button 
+                        onClick={() => setTransferringId(null)} 
+                        className="wallet-btn" 
+                        style={{ padding: '0.5rem', fontSize: '0.85rem', flex: 1, justifyContent: 'center' }}
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                ) : (
+                  <button 
+                    onClick={() => handleTransferClick(badge.id)} 
+                    className="wallet-btn" 
+                    style={{ width: '100%', justifyContent: 'center', gap: '0.5rem' }}
+                  >
+                    <Send size={16} /> Share Badge
+                  </button>
+                )}
               </div>
             </div>
           ))}

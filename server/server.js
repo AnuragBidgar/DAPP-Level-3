@@ -49,6 +49,27 @@ app.post('/api/badges', (req, res) => {
   res.json(newBadge);
 });
 
+app.put('/api/badges/:id/transfer', (req, res) => {
+  const { id } = req.params;
+  const { newWalletAddress } = req.body;
+  
+  if (!newWalletAddress) {
+    return res.status(400).json({ error: 'Missing new wallet address' });
+  }
+
+  const db = getDB();
+  const badgeIndex = db.badges.findIndex(b => b.id === id);
+  
+  if (badgeIndex === -1) {
+    return res.status(404).json({ error: 'Badge not found' });
+  }
+
+  db.badges[badgeIndex].walletAddress = newWalletAddress;
+  saveDB(db);
+  
+  res.json(db.badges[badgeIndex]);
+});
+
 app.get('/api/stats', (req, res) => {
   const db = getDB();
   const totalBadges = db.badges.length;

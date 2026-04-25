@@ -32,6 +32,20 @@ export const saveBadge = async (walletAddress: string, badge: Omit<Badge, 'id' |
   }
 };
 
+export const transferBadge = async (id: string, newWalletAddress: string): Promise<Badge | null> => {
+  try {
+    const res = await fetch(`${API_URL}/badges/${id}/transfer`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ newWalletAddress })
+    });
+    return await res.json();
+  } catch (error) {
+    console.error('Error transferring badge', error);
+    return null;
+  }
+};
+
 export const getStats = async (): Promise<{ totalBadges: number, uniqueUsers: number }> => {
   try {
     const res = await fetch(`${API_URL}/stats`);
