@@ -63,7 +63,7 @@ npx vitest run
 5. Click **Share Badge** to securely transfer a badge to another person's wallet address.
 
 ## Project Submission Links
-- **Live Demo:** [http://localhost:5175/]
+- **Live Demo:** http://localhost:5175/
 - **Demo Video:** https://github.com/user-attachments/assets/17039152-cb30-4ba0-9fbe-22e464be6487
 
 
