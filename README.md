@@ -64,5 +64,15 @@ npx vitest run
 
 ## Project Submission Links
 - **Live Demo:** [http://localhost:5175/]
-- **Demo Video:** []
+- **Demo Video:** https://github.com/user-attachments/assets/17039152-cb30-4ba0-9fbe-22e464be6487
+
+
+
+
+
+
+
+
+
+
 
